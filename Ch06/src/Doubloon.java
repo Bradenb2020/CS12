@@ -1,4 +1,3 @@
-
 public class Doubloon {
 	public static void main(String[] args) {
 		System.out.println(isDoubloon("abba"));
