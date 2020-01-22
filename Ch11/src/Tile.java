@@ -6,6 +6,9 @@ public class Tile {
 		this.letter=letter;
 		this.value=value;
 	}
+	public Tile() {
+		this('E',1);
+	}
 	public String printTile() {
 		return String.format("Letter: %c Value: %01d\n",this.letter,this.value);
 	}
