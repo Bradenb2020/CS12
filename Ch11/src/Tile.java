@@ -7,6 +7,24 @@ public class Tile {
 		this.value=value;
 	}
 	public String printTile() {
-		return String.format("%c",this.letter);
+		return String.format("Letter: %c Value: %01d\n",this.letter,this.value);
+	}
+	public boolean equals(Tile that) {
+		return this.letter==that.letter&&this.value==that.value;
+	}
+	public String toString() {
+		return String.format("Letter: %c Value: %01d\n",this.letter,this.value);
+	}
+	public void setLetter(char letter) {
+		this.letter=letter;
+	}
+	public char getLetter() {
+		return letter;
+	}
+	public void setValue(int value) {
+		this.value=value;
+	}
+	public int getValue() {
+		return value;
 	}
 }
