@@ -1,13 +1,20 @@
+import java.util.Arrays;
 public class CardTester {
 	public static void main(String[] args) {
-		Card aceOfSpades=new Card(1,3);
-		Card sevenOfDiamonds=new Card(7,1);
-		Card jackOfClubs=new Card(11,0);
-		System.out.println(aceOfSpades);
-		System.out.println(sevenOfDiamonds);
-		System.out.println(jackOfClubs);
-		System.out.println(aceOfSpades.equals(sevenOfDiamonds));
-		Card aceOfSpades2=new Card(1,3);
-		System.out.println(aceOfSpades.equals(aceOfSpades2));
+		Card[] deck=new Card[52];
+		int index=0;
+		for(int suit=0;suit<=3;suit++) {
+			for(int rank=1;rank<=13;rank++) {
+				deck[index]=new Card(rank,suit);
+				index++;
+			}
+		}
+		printDeck(deck);
+		System.out.println(Arrays.toString(deck));
+	}
+	public static void printDeck(Card[] cards) {
+	    for (Card card:cards) {
+	        System.out.println(card);
+	    }
 	}
 }
