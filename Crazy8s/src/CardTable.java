@@ -74,9 +74,15 @@ public class CardTable extends Canvas {
     		Random random=new Random();
     		int rank=random.nextInt(13)+1;
     		int suit=random.nextInt(4);
-			double x=i/5.0;
-    		double y=0;
-    		drawCard(g,rank,suit,x,y);
+    		while(drawnRanks[rank]<1&&drawnSuits[suit]<1) {
+    			drawnRanks[rank]++;
+    			drawnSuits[suit]++;
+    			double x=i/4.0;
+        		double y=0.2;
+        		drawCard(g,rank,suit,x,y);
+    			rank=random.nextInt(13)+1;
+        		suit=random.nextInt(4);
+    		}
     	}
 //        for (int rank = 1; rank <= 13; rank++) {
 //            for (int suit = 0; suit <= 3; suit++) {
