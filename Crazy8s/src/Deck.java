@@ -24,12 +24,12 @@ public class Deck {
 			System.out.println(card);
 		}
 	}
-	public Deck subdeck(int low,int high) {
-		Deck sub=new Deck(high-low+1);
-		for(int i=0;i<sub.cards.length;i++) {
-			sub.cards[i]=this.cards[low+i];
+	public String toString() {
+		String s="";
+		for(Card card:cards) {
+			s=s+card.toString()+", ";
 		}
-		return sub;
+		return s;
 	}
 	private static int randomInt(int low,int high) {
 		Random random=new Random();
@@ -60,11 +60,32 @@ public class Deck {
 			swap(i,indexLowest(i,this.cards.length-1));
 		}
 	}
-	public String toString() {
-		String s="";
-		for(Card card:cards) {
-			s=s+card.toString()+", ";
+	public Deck subdeck(int low,int high) {
+		Deck sub=new Deck(high-low+1);
+		for(int i=0;i<sub.cards.length;i++) {
+			sub.cards[i]=this.cards[low+i];
 		}
-		return s;
+		return sub;
+	}
+	private static Deck merge(Deck d1,Deck d2) {
+		Deck d3=new Deck(d1.cards.length+d2.cards.length);
+		int i=0;
+		int j=0;
+		for(int k=0;k<d3.cards.length;k++) {
+			if(d1.cards.length==0) {
+				d3.cards[k]=d2.cards[j];
+				j++;
+			} else if(d2.cards.length==0) {
+				d3.cards[k]=d1.cards[i];
+				i++;
+			} else if(d1.cards[i].compareTo(d2.cards[j])>0){
+				d3.cards[k]=d1.cards[i];
+				i++;
+			} else if(d1.cards[i].compareTo(d2.cards[j])<0) {
+				d3.cards[k]=d2.cards[j];
+				j++;
+			}
+		}
+		return d3;
 	}
 }
