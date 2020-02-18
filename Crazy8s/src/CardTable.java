@@ -63,34 +63,24 @@ public class CardTable extends Canvas {
                     (int) (y * cardHeight),
                     null);
     }
+    
+    public void drawDeck(Graphics g, Deck d, double x,double y) {
+    	Card[] cards=d.getCards();
+    	for(int i=0;i<cards.length;i++) {
+    		drawCard(g,cards[i].getRank(),cards[i].getSuit(),x+i/5.0,y);
+    	}
+    }
 
     /**
      * Special method invoked when the Frame needs to be drawn.
      */
     public void paint(Graphics g) {
-    	int[] drawnRanks=new int[14];
-    	int[] drawnSuits=new int[4];
-    	for(int i=1;i<=5;i++) {
-    		Random random=new Random();
-    		int rank=random.nextInt(13)+1;
-    		int suit=random.nextInt(4);
-    		while(drawnRanks[rank]<1&&drawnSuits[suit]<1) {
-    			drawnRanks[rank]++;
-    			drawnSuits[suit]++;
-    			double x=i/4.0;
-        		double y=0.2;
-        		drawCard(g,rank,suit,x,y);
-    			rank=random.nextInt(13)+1;
-        		suit=random.nextInt(4);
-    		}
-    	}
-//        for (int rank = 1; rank <= 13; rank++) {
-//            for (int suit = 0; suit <= 3; suit++) {
-//                double x = rank - 1 + suit / 5.0;
-//                double y = suit / 2.0;
-//                drawCard(g, rank, suit, x, y);
-//            }
-//        }
+    	Deck d=new Deck();
+    	drawDeck(g,d,0.1,0.1);
+    	d.shuffle();
+    	drawDeck(g,d,0.1,0.35);
+    	d.selectionSort();
+    	drawDeck(g,d,0.1,0.6);
     }
 
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Deck {
 	private Card[] cards;
 	
@@ -29,22 +31,35 @@ public class Deck {
 		}
 		return sub;
 	}
-	//private static Deck merge(Deck d1,Deck d2) {
-		//create a new deck big enough for all the cards
-		//use i to keep track of where we are in the first deck
-		//use j to keep track of where we are in the second deck
-	//	int i=0;
-	//	int j=0;
-		//k traverses the result deck
-	//	for(int k=0;k<d3.length;k++) {
-			//if d1 is empty use top of d2
-			//if d2 is empty use top of d1
-			//otherwise compare top cards
-			//add lowest card to new deck at k
-			//increment i or j depending on card
-	//	}
-		//return the new deck
-	//}
+	private static int randomInt(int low,int high) {
+		Random random=new Random();
+		int r=random.nextInt((high-low)+1);
+		return r;
+	}
+	private void swap(int i,int j) {
+		Card temp=new Card(this.cards[i].getRank(),this.cards[i].getSuit());
+		this.cards[i]=this.cards[j];
+		this.cards[j]=temp;
+	}
+	public void shuffle() {
+		for(int i=0;i<this.cards.length;i++) {
+			swap(i,randomInt(i,this.cards.length-1));
+		}
+	}
+	private int indexLowest(int low,int high) {
+		int index=0;
+		for(int i=low;i<high;i++) {
+			if(this.cards[i].compareTo(this.cards[index])==-1) {
+				index=i;
+			}
+		}
+		return index;
+	}
+	public void selectionSort() {
+		for(int i=0;i<this.cards.length;i++) {
+			swap(i,indexLowest(i,this.cards.length-1));
+		}
+	}
 	public String toString() {
 		String s="";
 		for(Card card:cards) {
