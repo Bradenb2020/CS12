@@ -72,20 +72,28 @@ public class Deck {
 		int i=0;
 		int j=0;
 		for(int k=0;k<d3.cards.length;k++) {
-			if(d1.cards.length==0) {
+			if(i==d1.cards.length) {
 				d3.cards[k]=d2.cards[j];
 				j++;
-			} else if(d2.cards.length==0) {
+			} else if(j==d2.cards.length) {
 				d3.cards[k]=d1.cards[i];
 				i++;
-			} else if(d1.cards[i].compareTo(d2.cards[j])>0){
+			} else if(d1.cards[i].compareTo(d2.cards[j])<0){
 				d3.cards[k]=d1.cards[i];
 				i++;
-			} else if(d1.cards[i].compareTo(d2.cards[j])<0) {
+			} else {
 				d3.cards[k]=d2.cards[j];
 				j++;
 			}
 		}
 		return d3;
+	}
+	public Deck mergeSort() {
+		if(this.cards.length<=1) return this;
+		Deck sub1=this.subdeck(0,(this.cards.length/2)-1);
+		Deck sub2=this.subdeck((this.cards.length/2),this.cards.length-1);
+		sub1=sub1.mergeSort();
+		sub2=sub2.mergeSort();
+		return merge(sub1,sub2);
 	}
 }
