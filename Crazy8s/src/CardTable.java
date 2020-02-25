@@ -78,13 +78,17 @@ public class CardTable extends Canvas {
     	Deck d=new Deck();
     	drawDeck(g,d,0.1,0.1);
     	d.shuffle();
-    	drawDeck(g,d,0.1,0.35);
+    	drawDeck(g,d,0.1,0.3);
     	d.selectionSort();
-    	drawDeck(g,d,0.1,0.6);
+    	drawDeck(g,d,0.1,0.5);
     	d.shuffle();
-    	drawDeck(g,d,0.1,0.85);
+    	drawDeck(g,d,0.1,0.7);
     	d=d.mergeSort();
+    	drawDeck(g,d,0.1,0.9);
+    	d.shuffle();
     	drawDeck(g,d,0.1,1.1);
+    	d.insertionSort();
+    	drawDeck(g,d,0.1,1.3);
     }
 
     public static void main(String[] args) {

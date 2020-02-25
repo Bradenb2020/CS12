@@ -4,20 +4,20 @@ public class Deck {
 	private Card[] cards;
 	
 	public Deck(int n) {
-		this.cards=new Card[n];
+		cards=new Card[n];
 	}
 	public Deck() {
-		this.cards=new Card[52];
+		cards=new Card[52];
 		int index=0;
 		for(int suit=0;suit<=3;suit++) {
 			for(int rank=1;rank<=13;rank++) {
-				this.cards[index]=new Card(rank,suit);
+				cards[index]=new Card(rank,suit);
 				index++;
 			}
 		}
 	}
 	public Card[] getCards() {
-		return this.cards;
+		return cards;
 	}
 	public void print() {
 		for(Card card:cards) {
@@ -37,33 +37,33 @@ public class Deck {
 		return r;
 	}
 	private void swap(int i,int j) {
-		Card temp=new Card(this.cards[i].getRank(),this.cards[i].getSuit());
-		this.cards[i]=this.cards[j];
-		this.cards[j]=temp;
+		Card temp=new Card(cards[i].getRank(),cards[i].getSuit());
+		cards[i]=cards[j];
+		cards[j]=temp;
 	}
 	public void shuffle() {
-		for(int i=0;i<this.cards.length;i++) {
-			swap(i,randomInt(i,this.cards.length-1));
+		for(int i=0;i<cards.length;i++) {
+			swap(i,randomInt(i,cards.length-1));
 		}
 	}
 	private int indexLowest(int low,int high) {
 		int index=0;
 		for(int i=low;i<high;i++) {
-			if(this.cards[i].compareTo(this.cards[index])==-1) {
+			if(cards[i].compareTo(cards[index])==-1) {
 				index=i;
 			}
 		}
 		return index;
 	}
 	public void selectionSort() {
-		for(int i=0;i<this.cards.length;i++) {
-			swap(i,indexLowest(i,this.cards.length-1));
+		for(int i=0;i<cards.length;i++) {
+			swap(i,indexLowest(i,cards.length-1));
 		}
 	}
 	public Deck subdeck(int low,int high) {
 		Deck sub=new Deck(high-low+1);
 		for(int i=0;i<sub.cards.length;i++) {
-			sub.cards[i]=this.cards[low+i];
+			sub.cards[i]=cards[low+i];
 		}
 		return sub;
 	}
@@ -89,11 +89,30 @@ public class Deck {
 		return d3;
 	}
 	public Deck mergeSort() {
-		if(this.cards.length<=1) return this;
-		Deck sub1=this.subdeck(0,(this.cards.length/2)-1);
-		Deck sub2=this.subdeck((this.cards.length/2),this.cards.length-1);
+		if(cards.length<=1) return this;
+		Deck sub1=subdeck(0,(cards.length/2)-1);
+		Deck sub2=subdeck((cards.length/2),cards.length-1);
 		sub1=sub1.mergeSort();
 		sub2=sub2.mergeSort();
 		return merge(sub1,sub2);
+	}
+	public void insertionSort() {
+		for(int i=1;i<cards.length;i++) {
+			int j=i;
+			Card temp=cards[i];
+			while(j>0) {
+				if(cards[i].compareTo(cards[j-1])<0) {
+					j--;
+				} else {
+					break;
+				}
+			}
+			int k=i;
+			while(k>j) {
+				cards[k]=cards[k-1];
+				k--;
+			}
+			cards[k]=temp;
+		}
 	}
 }
