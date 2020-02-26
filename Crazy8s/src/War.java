@@ -18,6 +18,15 @@ public class War {
 				p2.addCard(c1);
 				p2.addCard(c2);
 			} else {
+				if(p1.size()<4) {
+					System.out.println("Player 2 wins");
+					break;
+				} else if (p2.size()<4) {
+					System.out.println("Player 1 wins");
+					break;
+				} else {
+					
+				}
 			}
 		}
 		if(p1.size()>0) {
