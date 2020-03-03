@@ -6,7 +6,7 @@ public class CardCollection {
 	private ArrayList<Card> cards;
 	
 	public CardCollection(String label) {
-		label=label;
+		this.label=label;
 		cards=new ArrayList<Card>();
 	}
 	public void addCard(Card card) {
@@ -28,6 +28,9 @@ public class CardCollection {
 	public Card getCard(int i) {
 		return cards.get(i);
 	}
+	public String getLabel() {
+		return label;
+	}
 	public Card lastCard() {
 		int i=size()-1;
 		return cards.get(i);
@@ -43,5 +46,13 @@ public class CardCollection {
 			int j=r.nextInt(i);
 			swapCards(i,j);
 		}
+	}
+	public void deal(CardCollection that, int n) {
+		for(int i=0;i<n;i++) {
+			that.addCard(popCard());
+		}
+	}
+	public void dealAll(CardCollection that) {
+		deal(that,size());
 	}
 }

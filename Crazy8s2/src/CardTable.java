@@ -79,15 +79,15 @@ public class CardTable extends Canvas {
     	drawDeck(g,d,0.1,0.1);
     	d.shuffle();
     	drawDeck(g,d,0.1,0.3);
-    	d.selectionSort();
+    	//d.selectionSort();
     	drawDeck(g,d,0.1,0.5);
     	d.shuffle();
     	drawDeck(g,d,0.1,0.7);
-    	d=d.mergeSort();
+    	//d=d.mergeSort();
     	drawDeck(g,d,0.1,0.9);
     	d.shuffle();
     	drawDeck(g,d,0.1,1.1);
-    	d.insertionSort();
+    	//d.insertionSort();
     	drawDeck(g,d,0.1,1.3);
     }
 
