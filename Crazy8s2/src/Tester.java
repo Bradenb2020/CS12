@@ -1,12 +1,6 @@
 public class Tester {
 	public static void main(String[] args) {
-		Deck deck = new Deck("Deck");
-		deck.shuffle();
-		Hand hand = new Hand("Hand");
-		deck.deal(hand, 5);
-		hand.display();
-		Hand drawPile = new Hand("Draw Pile");
-		deck.dealAll(drawPile);
-		System.out.printf("Draw Pile has %d cards.\n",drawPile.size());
+		Eights eights=new Eights();
+		eights.playGame();
 	}
 }

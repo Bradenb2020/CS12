@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Eights {
 	private Player one;
-	private Player two;
+	private SmartPlayer two;
 	private Hand drawPile;
 	private Hand discardPile;
 	private Scanner in;
@@ -11,9 +11,9 @@ public class Eights {
 		int handSize=5;
 		in=new Scanner(System.in);
 		System.out.println("Enter player one's name: ");
-		one=new Player(in.next());
+		one=new Player("a");
 		System.out.println("Enter player two's name: ");
-		two=new Player(in.next());
+		two=new SmartPlayer("b");
 		Deck deck = new Deck("Deck");
 		deck.shuffle();
 		deck.deal(one.getHand(),handSize);
@@ -61,5 +61,15 @@ public class Eights {
 
 	    System.out.println(player.getName()+" plays "+next);
 	    System.out.println();
+	}
+	public void playGame() {
+	    Player player = one;
+	    while (!isDone()) {
+	        displayState();
+	        takeTurn(player);
+	        player = nextPlayer(player);
+	    }
+	    one.displayScore();
+	    two.displayScore();
 	}
 }

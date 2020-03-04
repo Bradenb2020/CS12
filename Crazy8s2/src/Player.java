@@ -1,6 +1,6 @@
 public class Player {
 	private String name;
-	private Hand hand;
+	protected Hand hand;
 	
 	public Player(String name) {
 		this.name=name;
@@ -31,7 +31,7 @@ public class Player {
 	public Card drawForMatch(Eights eights,Card prev) {
 		while(true) {
 			Card card=eights.drawCard();
-			System.out.println(name + " draws " + card);
+			System.out.println(name+" draws "+card);
 			if(cardMatches(card,prev)) {
 				return card;
 			}
@@ -50,4 +50,25 @@ public class Player {
 	    }
 	    return false;
 	}
+	public int score() {
+        int sum = 0;
+        for (int i=0;i<hand.size();i++) {
+            Card card=hand.getCard(i);
+            int rank=card.getRank();
+            if (rank==8) {
+                sum-=20;
+            } else if (rank>10) {
+                sum-=10;
+            } else {
+                sum-=rank;
+            }
+        }
+        return sum;
+    }
+	public void display() {
+        hand.display();
+    }
+	public void displayScore() {
+        System.out.println(name+" has "+score()+" points");
+    }
 }
