@@ -47,6 +47,20 @@ public class CardCollection {
 			swapCards(i,j);
 		}
 	}
+	private int indexLowest(int low,int high) {
+		int index=0;
+		for(int i=low;i<high;i++) {
+			if(getCard(i).compareTo(getCard(i))==-1) {
+				index=i;
+			}
+		}
+		return index;
+	}
+	public void selectionSort() {
+		for(int i=0;i<cards.size();i++) {
+			swapCards(i,indexLowest(i,cards.size()-1));
+		}
+	}
 	public void deal(CardCollection that, int n) {
 		for(int i=0;i<n;i++) {
 			that.addCard(popCard());
@@ -55,4 +69,5 @@ public class CardCollection {
 	public void dealAll(CardCollection that) {
 		deal(that,size());
 	}
+	
 }

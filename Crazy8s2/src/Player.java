@@ -13,6 +13,7 @@ public class Player {
         return hand;
     }
 	public Card play(Eights eights,Card prev) {
+		hand.selectionSort();
 		Card card=searchForMatch(prev);
 		if(card==null) {
 			card=drawForMatch(eights,prev);

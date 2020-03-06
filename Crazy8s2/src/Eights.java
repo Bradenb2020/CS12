@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Eights {
 	private Player one;
-	private SmartPlayer two;
+	private Player two;
 	private Hand drawPile;
 	private Hand discardPile;
 	private Scanner in;
@@ -50,8 +50,7 @@ public class Eights {
 		one.getHand().display();
 		System.out.println(two.getName()+"'s hand: ");
 		two.getHand().display();
-		System.out.println(discardPile.getLabel()+": ");
-		discardPile.display();
+		System.out.println("Top Card: "+discardPile.getCard(discardPile.size()-1));
 		System.out.printf("Draw Pile has %d cards.\n",drawPile.size());
 	}
 	public void takeTurn(Player player) {

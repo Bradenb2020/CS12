@@ -11,8 +11,14 @@ public class SmartPlayer extends Player {
 		}
 		for(int i=0;i<hand.size();i++) {
 			Card card=hand.getCard(i);
-			if(cardMatches(card,prev)) {
+			if(cardMatches(card,prev)&&card.getRank()>=10) {
 				return hand.popCard(i);
+			}
+		}
+		for(int i=0;i<hand.size();i++) {
+			Card card=hand.getCard(i);
+			if(cardMatches(card,prev)) {
+				return hand.popCard();
 			}
 		}
 		return null;
